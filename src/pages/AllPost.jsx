@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Container, PostCard } from "../components";
 import appwriteService from "../appwrite/config";
+import Loader from "../components/Loader";
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
-  useEffect(() => {}, []);
-  appwriteService.getPosts([]).then((posts) => {
-    if (posts) {
-      setPosts(posts.documents);
-    }
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    appwriteService.getPosts([]).then((posts) => {
+      if (posts) {
+        setPosts(posts.documents);
+      }
+      setLoading(false);
+    }, []);
   });
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="w-full py-8">
       <Container>

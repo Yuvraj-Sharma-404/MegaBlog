@@ -4,6 +4,7 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import BlogImage from "../components/BlogImage";
 
 export default function Post() {
   const [post, setPost] = useState(null);
@@ -35,8 +36,8 @@ export default function Post() {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 aspect-video">
+          <BlogImage
             src={appwriteService.getFilePreview(post.featuredImage)}
             alt={post.title}
             className="rounded-xl w-full"
@@ -58,7 +59,7 @@ export default function Post() {
         <div className="w-full mb-6">
           <h1 className="text-2xl font-bold text-center">{post.title}</h1>
         </div>
-        <div className="browser-css text-center">{parse(post.content)}</div>
+        <div>{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;
