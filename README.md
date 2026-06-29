@@ -31,8 +31,6 @@
 
 Clone the repository
 
-git clone https://github.com/Yuvraj-Sharma-404/mega-blog.git
-
 Go to the project directory
 
 cd mega-blog
