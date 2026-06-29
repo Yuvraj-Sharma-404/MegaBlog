@@ -62,7 +62,7 @@ Mega-Blog/
 
 🎯 Future Improvements
 
-- ❤️ Like and bookmark blogs
+- ❤️ Like blogs
 - 💬 Comments section
 - 🔍 Search blogs
 - 🏷️ Categories & tags
