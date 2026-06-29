@@ -65,7 +65,6 @@ Mega-Blog/
 - ❤️ Like blogs
 - 💬 Comments section
 - 🔍 Search blogs
-- 🏷️ Categories & tags
 - 🌙 Dark mode
 - 👤 User profiles
 
