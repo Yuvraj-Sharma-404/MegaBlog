@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, PostCard } from "../components";
 import appwriteService from "../appwrite/config";
+import Loader from "../components/Loader";
 import { Query } from "appwrite";
 import { useSelector } from "react-redux";
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
 
   useEffect(() => {
@@ -24,10 +26,15 @@ function AllPosts() {
       }
 
       setPosts(allPosts);
+      setLoading(false);
     };
 
     fetchPosts();
   }, [userData]);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="w-full py-8">

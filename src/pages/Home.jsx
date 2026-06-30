@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
+import Loader from "../components/Loader";
 import { Query } from "appwrite";
 import { useSelector } from "react-redux";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
 
   useEffect(() => {
@@ -24,19 +26,27 @@ function Home() {
       }
 
       setPosts(allPosts);
+      setLoading(false);
     };
 
     fetchPosts();
   }, [userData]);
 
   if (posts.length === 0) {
+    if (loading) {
+      return (
+        <div className="w-full h-screen flex items-center justify-center">
+          <Loader />
+        </div>
+      );
+    }
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold hover:text-gray-500">
-                Login to read posts
+              <h1 className="text-2xl font-bold hover:text-slate-400 text-[#2a2312]">
+                Login to read posts...
               </h1>
             </div>
           </div>
